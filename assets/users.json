@@ -61,5 +61,41 @@
             "email": "dlecar@test.com",
             "domicile": "Somewhere"
         }
+    },
+    {
+        "nom": "Test15",
+        "prenom": "Dominique",
+        "id": "LEC-Test15",
+        "adresses": {
+            "email": "dlecar@test.com",
+            "domicile": "Somewhere"
+        }
+    },
+    {
+        "nom": "Test3",
+        "prenom": "Dominique",
+        "id": "LEC-Test3",
+        "adresses": {
+            "email": "dlecar@test.com",
+            "domicile": "Somewhere"
+        }
+    },
+    {
+        "nom": "Test2",
+        "prenom": "Dominique",
+        "id": "LEC-Test3",
+        "adresses": {
+            "email": "dlecar@test.com",
+            "domicile": "Somewhere"
+        }
+    },
+    {
+        "nom": "Test1",
+        "prenom": "Dominique",
+        "id": "LEC-Test1",
+        "adresses": {
+            "email": "dlecar@test.com",
+            "domicile": "Somewhere"
+        }
     }
 ]

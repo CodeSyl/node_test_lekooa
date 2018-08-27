@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
 const users = require('../assets/users.json');
+const compareDb = require('../utils/compareDb');
 const _ = require('lodash');
 
 const UserService = {
@@ -29,42 +30,11 @@ const UserService = {
 
     synchronization: async users => {
         let usersDbArray = [];
-        let usersSync = [];
-        const usersDb = await UserService.getUsers();
 
+        const usersDb = await UserService.getUsers();
         _.findKey(usersDb, user => { usersDbArray.push(user) });
 
-        for (let i = 0; i < usersDbArray.length; i++) {
-
-            if (usersDbArray[i].id_ext === users[i].id) {
-                // Update user informations if user already existed and it have prop id_ext
-                usersSync.push(
-                    {
-                        firstName: users[i].prenom,
-                        lastName: users[i].nom,
-                        id_ext: users[i].id,
-                        email: users[i].adresses.email,
-                        domicile: users[i].adresses.domicile
-                    }
-                )
-            } else {
-                // Add users who not need updated
-                usersSync.push(usersDbArray[i]);
-
-                // Add users who don't already exist in database
-                usersSync.push(
-                    {
-                        firstName: users[i].prenom,
-                        lastName: users[i].nom,
-                        id_ext: users[i].id,
-                        email: users[i].adresses.email,
-                        domicile: users[i].adresses.domicile
-                    }
-                )
-            }
-        }
-
-        const usersSynchronized = await UserService.resetUsers(usersSync);
+        const usersSynchronized = await UserService.resetUsers(compareDb(usersDbArray, users));
 
         return usersSynchronized;
     }
